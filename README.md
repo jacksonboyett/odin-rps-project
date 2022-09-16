@@ -1,2 +1,2 @@
-# odin-rock-paper
+# odin-rps-project
 Practice for Javascript
