@@ -16,7 +16,7 @@ console.log(`Computer choice: ${computerChoice}`)
 
 // Ask the user for their choice
 function askUser() {
-    playerOutput = prompt('Please enter your selection')
+    playerOutput = prompt('Play three games of rock, paper, scissors with the computer! Please enter your selection below:')
     return playerOutput
 }
 let playerChoice = askUser();
@@ -44,33 +44,34 @@ console.log(`Player choice: ${correctedChoice}`);
 function compareChoice() {
     if (correctedChoice === 'Rock') {
         if (computerChoice === 'Rock') {
-            result = 'Tie!'
+            result = {message:'Tie!', counter: 0};
         } else if (computerChoice === 'Scissors') {
-            result = 'You win!'
+            result = {message:'You win!', counter: 1};
         } else {
-            result = 'You lose :('
+            result = {message:'You lose :(', counter: -1};
         }
     }  else if (correctedChoice === 'Paper') {
         if (computerChoice === 'Paper') {
-            result = 'Tie!'
+            result = {message:'Tie!', counter: 0};
         } else if (computerChoice === 'Rock') {
-            result = 'You win!'
+            result = {message:'You win!', counter: 1};
         } else {
-            result = 'You lose :('
+            result = {message:'You lose :(', counter: -1};
         }
     } else {
         if (computerChoice === 'Scissors') {
-            result = 'Tie!'
+            result = {message:'Tie!', counter: 0}; 
         } else if (computerChoice === 'Paper') {
-            result = 'You win!'
+            result = {message:'You win!', counter: 1}
         } else {
-            result = 'You lose :('
+            result = {message:'You lose :(', counter: -1}
         }
     }
     return result;
 };
 compareChoice(correctedChoice, computerChoice);
 };
+// singleGame();
 // console.log(result);
 
 // Play a 5 round game
@@ -80,7 +81,20 @@ compareChoice(correctedChoice, computerChoice);
 // Output results
 
 function game() {
-    for (let i = 0; i < 5; i++) {
-        game
+    let tally = 0;
+    for (let i = 0; i < 3; i++) {
+        singleGame();
+        tally = tally + result.counter;
     }
-}
+    total = tally;
+    return total
+};
+game();
+
+if (total > 0) {
+    alert('!!! YOU WIN !!!');
+} else if (total = 0) {
+    alert('You tied with the computer');
+} else {
+    alert(':( YOU LOST :(');
+};
