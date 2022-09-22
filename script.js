@@ -17,7 +17,10 @@
 
 // Single game function 
 let tally = 0; 
+let compTally = 0;
+let gameNum = 0;
 function singleGame() {
+    console.log('*** NEW GAME ***')
 // Generate a computer choice
 function getComputerChoice(randomNumber) {
     randomNumber = Math.random();
@@ -28,11 +31,39 @@ function getComputerChoice(randomNumber) {
     } else {
         computerChoice = 'Scissors'
     }
-    console.log(`Computer Choice: ${computerChoice}`);
     return computerChoice
 }
 getComputerChoice();
 console.log(`Computer choice: ${computerChoice}`)
+
+// Compare choices, select winner, update tally
+    if (userChoice === 'Rock') {
+        if (computerChoice === 'Rock') {
+            comparison = {message:'Tie!', counter: 0, compCounter: 0};
+        } else if (computerChoice === 'Scissors') {
+            comparison = {message:'You win!', counter: 1, compCounter: 0};
+        } else {
+            comparison = {message:'You lose :(', counter: 0, compCounter: 1};
+        }
+    }  else if (userChoice === 'Paper') {
+        if (computerChoice === 'Paper') {
+            comparison = {message:'Tie!', counter: 0, compCounter: 0};
+        } else if (computerChoice === 'Rock') {
+            comparison = {message:'You win!', counter: 1, compCounter: 0};
+        } else {
+            comparison = {message:'You lose :(', counter: 0, compCounter: 1};
+        }
+     } else {
+        if (computerChoice === 'Scissors') {
+            comparison = {message:'Tie!', counter: 0, compCounter: 0}; 
+        } else if (computerChoice === 'Paper') {
+            comparison = {message:'You win!', counter: 1, compCounter: 0}
+        } else {
+            comparison = {message:'You lose :(', counter: 0, compCounter: 1}
+        }
+    };
+    return comparison;
+};
 
 // Game function
     const container = document.querySelector('.container') // allows us to append results
@@ -40,59 +71,72 @@ console.log(`Computer choice: ${computerChoice}`)
     const rockBtn = document.querySelector('.rock');
         rockBtn.addEventListener('click', function (e) {
             userChoice = 'Rock';
-            result = compareChoices(userChoice, computerChoice);
-            tally += comparison.counter; console.log(tally);
+            comparison = singleGame(userChoice);
             console.log(`User Choice: ${userChoice}`);
+            tally += comparison.counter; 
+            compTally += comparison.compCounter;
+            const div = document.createElement('div');
+            gameNum += 1;
+            div.textContent = `Game ${gameNum}: Your Score: ${tally} vs. Computer Score: ${compTally}`;
+            container.appendChild(div);
+            if (tally === 5) {
+                const announceWin = document.createElement('div');
+                announceWin.textContent = 'You are a WIENER!!!!'
+                container.appendChild(announceWin)
+            } else if (compTally === 5) {
+                const announceLose = document.createElement('div');
+                announceLose.textContent = 'You are a LUKESER!!!!'
+                container.appendChild(announceLose)
+            } else {
+            };
             return tally
         });
 // PAPER button choice
     const paperBtn = document.querySelector('.paper');
         paperBtn.addEventListener('click', function (e) {
             userChoice = 'Paper';
-            result = compareChoices(userChoice, computerChoice);
-            tally += comparison.counter; console.log(tally);
+            comparison = singleGame(userChoice);
             console.log(`User Choice: ${userChoice}`);
+            tally += comparison.counter;
+            compTally += comparison.compCounter;
+            const div = document.createElement('div');
+            gameNum += 1;
+            div.textContent = `Game ${gameNum}: Your Score: ${tally} vs. Computer Score: ${compTally}`;
+            container.appendChild(div);
+            if (tally === 5) {
+                const announceWin = document.createElement('div');
+                announceWin.textContent = 'You are a WIENER!!!!'
+                container.appendChild(announceWin)
+            } else if (compTally === 5) {
+                const announceLose = document.createElement('div');
+                announceLose.textContent = 'You are a LUKESER!!!!'
+                container.appendChild(announceLose)
+            } else {
+            };
             return tally
         });
 // Scissors button choice
     const scissorsBtn = document.querySelector('.scissors');
         scissorsBtn.addEventListener('click', function (e) {
-            userChoice = 'Paper';
-            result = compareChoices(userChoice, computerChoice);
-            tally += comparison.counter; console.log(tally);
+            userChoice = 'Scissors';
+            comparison = singleGame(userChoice);
             console.log(`User Choice: ${userChoice}`);
+            tally += comparison.counter;
+            compTally += comparison.compCounter;
+            const div = document.createElement('div');
+            gameNum += 1;
+            div.textContent = `Game ${gameNum}: Your Score: ${tally} vs. Computer Score: ${compTally}`;
+            container.appendChild(div);
+            if (tally === 5) {
+                const announceWin = document.createElement('div');
+                announceWin.textContent = 'You are a WIENER!!!!'
+                container.appendChild(announceWin)
+            } else if (compTally === 5) {
+                const announceLose = document.createElement('div');
+                announceLose.textContent = 'You are a LUKESER!!!!'
+                container.appendChild(announceLose)
+            } else {
+            };
             return tally
         });
-}
 
-singleGame();
-
-// Comparison function
-function compareChoices() {
-    if (userChoice === 'Rock') {
-        if (computerChoice === 'Rock') {
-            comparison = {message:'Tie!', counter: 0};
-        } else if (computerChoice === 'Scissors') {
-            comparison = {message:'You win!', counter: 1};
-        } else {
-            comparison = {message:'You lose :(', counter: -1};
-        }
-    }  else if (userChoice === 'Paper') {
-        if (computerChoice === 'Paper') {
-            comparison = {message:'Tie!', counter: 0};
-        } else if (computerChoice === 'Rock') {
-            comparison = {message:'You win!', counter: 1};
-        } else {
-            comparison = {message:'You lose :(', counter: -1};
-        }
-    } else {
-        if (userChoice === 'Scissors') {
-            comparison = {message:'Tie!', counter: 0}; 
-        } else if (computerChoice === 'Paper') {
-            comparison = {message:'You win!', counter: 1}
-        } else {
-            comparison = {message:'You lose :(', counter: -1}
-        }
-    }
-    return comparison;
-};
