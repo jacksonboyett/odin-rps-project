@@ -16,8 +16,8 @@
 /// Object should have: winner of that game current tally
 
 // Single game function 
+let tally = 0; 
 function singleGame() {
-    let tally = 0;
 // Generate a computer choice
 function getComputerChoice(randomNumber) {
     randomNumber = Math.random();
@@ -28,6 +28,7 @@ function getComputerChoice(randomNumber) {
     } else {
         computerChoice = 'Scissors'
     }
+    console.log(`Computer Choice: ${computerChoice}`);
     return computerChoice
 }
 getComputerChoice();
@@ -41,6 +42,7 @@ console.log(`Computer choice: ${computerChoice}`)
             userChoice = 'Rock';
             result = compareChoices(userChoice, computerChoice);
             tally += comparison.counter; console.log(tally);
+            console.log(`User Choice: ${userChoice}`);
             return tally
         });
 // PAPER button choice
@@ -49,6 +51,7 @@ console.log(`Computer choice: ${computerChoice}`)
             userChoice = 'Paper';
             result = compareChoices(userChoice, computerChoice);
             tally += comparison.counter; console.log(tally);
+            console.log(`User Choice: ${userChoice}`);
             return tally
         });
 // Scissors button choice
@@ -57,6 +60,7 @@ console.log(`Computer choice: ${computerChoice}`)
             userChoice = 'Paper';
             result = compareChoices(userChoice, computerChoice);
             tally += comparison.counter; console.log(tally);
+            console.log(`User Choice: ${userChoice}`);
             return tally
         });
 }
